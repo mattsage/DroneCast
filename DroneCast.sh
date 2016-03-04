@@ -10,7 +10,7 @@
 #crontab -e
 # 00 06 * * * /home/pi/Scripts/github/DroneCast/DroneCast.sh
 
-pywu fetch [apikey] 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
+pywu fetch apikey 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
 echo "########################"
 echo "Temperature"
