@@ -26,7 +26,7 @@ if [ $temp -le 5 ] #If check to see if Temp is < 5C
 then
 	echo "too cold"
 	condition1="0"
-	echo $condition1 #echo to console for debugging
+	echo $condition1 #echo to console for debugging 
 else
 	echo "temperature OK"
 	condition1="1"
@@ -70,4 +70,4 @@ else
         echo $condition2
 fi
 
-#Insert Final If to check all wetaher conditions and if all criteria is met send Pushbullet message to Phone
+#Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
