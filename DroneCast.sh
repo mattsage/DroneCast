@@ -10,7 +10,12 @@
 #crontab -e
 # 00 06 * * * /home/pi/Scripts/github/DroneCast/DroneCast.sh
 
-pywu fetch apikey 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
+#To Do
+#[] Logic checks at each step
+#[]Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
+#[] Blink1 flash green if all cirtrea is good, red if not
+
+pywu fetch {apikey} 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
 echo "########################"
 echo "Temperature"
@@ -69,5 +74,3 @@ else
         condition1="1"
         echo $condition2
 fi
-
-#Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
