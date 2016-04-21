@@ -14,6 +14,7 @@
 #[] Logic checks at each step
 #[]Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
 #[] Blink1 flash green if all cirtrea is good, red if not
+#e.g. sudo /home/pi/blink1/commandline/blink1-tool --red --glimmer=10 
 
 pywu fetch {apikey} 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
