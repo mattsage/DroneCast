@@ -16,7 +16,7 @@
 #[] Blink1 flash green if all cirtrea is good, red if not
 #e.g. sudo /home/pi/blink1/commandline/blink1-tool --red --glimmer=10 
 
-pywu fetch {apikey} 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
+pywu fetch api 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
 echo "########################"
 echo "Temperature"
@@ -51,10 +51,17 @@ echo "########################"
 
 wind=`pywu current wind` #Grab Windspeed
 currentwindstring="current wind= "$wind
-echo $currentwindstring #echo to console for debugging
+echo $wind | tr -d -c 0-9
+#if [ `$wind | tr -d -c 0-9` -le 15 ]
+#then
+#	echo "wind good"
+#else
+#	echo "Too Windy"
+#fi
+
 
 #Need If statement here for check <15MPH
-
+echo ""
 echo "########################"
 echo "Visibility"
 echo "########################"
