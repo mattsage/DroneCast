@@ -16,6 +16,10 @@
 #[] Blink1 flash green if all cirtrea is good, red if not
 #e.g. sudo /home/pi/blink1/commandline/blink1-tool --red --glimmer=10 
 
+#echo "Please enter a Location:"
+#read location
+#pywu fetch api '$location,UK' 
+
 pywu fetch api 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
 echo "########################"
