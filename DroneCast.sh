@@ -14,7 +14,6 @@
 #[] Logic checks at each step
 #[]Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
 #[] Blink1 flash green if all cirtrea is good, red if not
-#e.g. sudo /home/pi/blink1/commandline/blink1-tool --red --glimmer=10 
 
 #echo "Please enter a Location:"
 #read location
@@ -35,12 +34,12 @@ echo $currenttempstring #echo to console for debugging
 if [ $temp -le 5 ] #If check to see if Temp is < 5C
 then
 	echo "too cold"
-	condition1="0"
-	echo $condition1 #echo to console for debugging 
+	TempChk="0"
+	echo $TempChk #echo to console for debugging 
 else
 	echo "temperature OK"
-	condition1="1"
-	echo $condition1 #echo to console for debugging
+	TempChk="1"
+	echo $TempChk #echo to console for debugging
 fi
 
 echo "########################"
@@ -86,3 +85,17 @@ else
         condition1="1"
         echo $condition2
 fi
+
+
+#echo "########################"
+#echo "Final Check"
+#echo "########################"
+
+#if [ $TempChk -eq 1 ] && [ $RainChk -eq 1 ] && [ $WindChk -eq 1 ] && [ $visiChk -eq 1]; then
+#	echo "Good to Fly"
+#	sudo /home/pi/blink1/commandline/blink1-tool --green --glimmer=10 
+#else
+#	echo "No Fly"
+#	sudo /home/pi/blink1/commandline/blink1-tool --red --glimmer=10 
+#fi
+
