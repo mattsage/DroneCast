@@ -11,15 +11,11 @@
 # 00 06 * * * /home/pi/Scripts/github/DroneCast/DroneCast.sh
 
 #To Do
-#[] Logic checks at each step
-#[]Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
-#[] Blink1 flash green if all cirtrea is good, red if not
+#[X] Logic checks at each step
+#[ ]Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
+#[X] Blink1 flash green if all cirtrea is good, red if not
 
-#echo "Please enter a Location:"
-#read location
-#pywu fetch api '$location,UK' 
-
-pywu fetch api 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
+pywu fetch 4c8c566a7337013c 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
 echo "########################"
 echo "Temperature"
@@ -34,12 +30,10 @@ echo $currenttempstring #echo to console for debugging
 if [ $temp -le 5 ] #If check to see if Temp is < 5C
 then
 	echo "too cold"
-	TempChk="0"
-	echo $TempChk #echo to console for debugging 
+	conditionT="0"
 else
 	echo "temperature OK"
-	TempChk="1"
-	echo $TempChk #echo to console for debugging
+	conditionT="1"
 fi
 
 echo "########################"
@@ -47,21 +41,25 @@ echo "Rainfall"
 echo "########################"
 raincm=`pywu current prec_day_cm` #Show amount of Precip 
 echo $raincm #echo to console for debugging
+#conditionR
 
 echo "########################"
 echo "Wind Speed"
 echo "########################"
 
 wind=`pywu current wind` #Grab Windspeed
-currentwindstring="current wind= "$wind
-echo $wind | tr -d -c 0-9
-#if [ `$wind | tr -d -c 0-9` -le 15 ]
-#then
-#	echo "wind good"
-#else
-#	echo "Too Windy"
-#fi
+currentwindstring="Current Wind= "$wind
+echo $currentwindstring
+wind=`echo $wind | egrep -o [0-9]+`
 
+if [ $wind -le 15 ]
+then
+       echo "Wind Good"
+       conditionW="1"
+else
+       echo "Too Windy"
+       conditionW="0"
+fi
 
 #Need If statement here for check <15MPH
 echo ""
@@ -78,24 +76,21 @@ visi2=$( printf "%.0f" $visi ) #Convert to Int
 if [ $visi2 -le 5 ] #If Visibilty is < 5 miles 
 then
         echo "Visibilty Poor"
-        condition1="0"
-        echo $condition3
+        conditionV="0"
 else
         echo "Visibility Good"
-        condition1="1"
-        echo $condition2
+        conditionV="1"
 fi
 
+#echo $conditionT 
+#echo $conditionR
+#echo $conditionW
+#echo $conditionV
 
-#echo "########################"
-#echo "Final Check"
-#echo "########################"
 
-#if [ $TempChk -eq 1 ] && [ $RainChk -eq 1 ] && [ $WindChk -eq 1 ] && [ $visiChk -eq 1]; then
-#	echo "Good to Fly"
-#	sudo /home/pi/blink1/commandline/blink1-tool --green --glimmer=10 
-#else
-#	echo "No Fly"
-#	sudo /home/pi/blink1/commandline/blink1-tool --red --glimmer=10 
-#fi
-
+if [ $conditionT == 1 ] && [ $conditionW == 1 ] && [ $conditionV == 1 ]
+then
+	sudo /home/pi/blink1/commandline/blink1-tool --green --glimmer=10
+else
+	sudo /home/pi/blink1/commandline/blink1-tool --red --glimmer=10
+fi
