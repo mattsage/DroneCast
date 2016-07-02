@@ -15,7 +15,7 @@
 #[ ]Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
 #[X] Blink1 flash green if all cirtrea is good, red if not
 
-pywu fetch 4c8c566a7337013c 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
+pywu fetch apikey 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
 echo "########################"
 echo "Temperature"
