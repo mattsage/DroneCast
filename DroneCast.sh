@@ -15,7 +15,7 @@
 #[ ]Insert Final If to check all wetaher conditions a nd if all criteria is met send Pushbullet message to Phone
 #[X] Blink1 flash green if all cirtrea is good, red if not
 
-apikey=`cat apikey.config` #Get WeatherUnderground API key from apikey.config
+apikey=`cat \home\pi\APIConfigs\WUapikey.config` #Get WeatherUnderground API key from apikey.config
 
 pywu fetch $apikey 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
 
