@@ -16,8 +16,9 @@
 #[X] Blink1 flash green if all cirtrea is good, red if not
 
 apikey=`cat /home/pi/APIConfigs/WUapikey.config` #Get WeatherUnderground API key from apikey.config
+location=`cat /home/pi/APIConfigs/WUlocation.config`
 
-pywu fetch $apikey 'Maidstone,UK' #Outputs File to /tmp/pywu.cache.json
+pywu fetch $apikey $location #Outputs File to /tmp/pywu.cache.json
 
 echo "########################"
 echo "Temperature"
